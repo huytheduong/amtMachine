@@ -111,8 +111,17 @@ public class Main {
                 }
             else
             {
-                card.returnCard();
-                System.exit(0);
+                System.out.println("\n Do you want another Transaction? \n 1. YES --- 2. NO");
+                int choice = myObj.nextInt();
+                if(choice == 1)
+                {
+                    exit = false;
+                }
+                else
+                {
+                    exit = true;
+                    System.exit(0);
+                }
             }
         }while(!exit);
 

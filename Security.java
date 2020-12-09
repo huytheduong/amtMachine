@@ -20,7 +20,8 @@ public class Security {
             {
                 return true;
             }
-            else{
+            else
+            {
                 return false;
             }
         }
@@ -57,7 +58,8 @@ public class Security {
             {
                 return true;
             }
-            else{
+            else
+            {
                 return false;
             }
         }

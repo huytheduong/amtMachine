@@ -38,6 +38,7 @@ public class Transfer {
                         user.withDrawChecking(amount);
                         System.out.println("Your Checking: $" + user.getChecking());
                         myList.get(i).depositChecking(amount);
+                        System.out.print("Account Number" + myList.get(i).getCardNum() + " has recieved amount " + amount + "into checking account");
                     }
                     else
                     {
@@ -45,6 +46,7 @@ public class Transfer {
                         user.withdrawSaving(amount);
                         System.out.println("Your Saving: $" + user.getSaving());
                         myList.get(i).depositSaving(amount);
+                        System.out.print("Account Number " + myList.get(i).getCardNum() + " has recieved amount $" + amount + " into saving account");
 
                     }
                 }
