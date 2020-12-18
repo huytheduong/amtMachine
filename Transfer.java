@@ -2,10 +2,13 @@ import java.io.Serial;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.lang.model.util.ElementScanner14;
+import javax.print.ServiceUI;
+
 
 public class Transfer {
 
-    public boolean makeTranser(ATMCard user, ArrayList<ATMCard> myList)
+    public boolean makeTranserToAnotherAccount(ATMCard user, ArrayList<ATMCard> myList)
     {
         //return true or false;
         Scanner myObj = new Scanner(System.in);
@@ -56,8 +59,66 @@ public class Transfer {
         
 
         return true;
+    }
 
 
+    public boolean makeTransferBetweenAccount(ATMCard user)
+    {
+        Scanner myObj = new Scanner(System.in);
+        System.out.println("Please Choose The Options below: ");
+        System.out.println("1. Checking -> Saving  ----- 2. Saving -> Checking ");
+        int choice = myObj.nextInt();
+
+        Security security = new Security();
+
+        if(choice == 1)
+        {
+            System.out.println("Please Enter The amount you want to transfer from checking to saving: ");
+            double amount = myObj.nextDouble();
+            
+            if(security.verifyTransfer(amount, user, choice))
+            {
+                System.out.println("Your Checking Balance Before Transfer : " + user.getChecking());
+                System.out.println("Your Saving Balance Before Transfer : " + user.getSaving());
+                user.withDrawChecking(amount);
+                user.depositSaving(amount);
+                System.out.println("Your Checking Balance After Transfer : " + user.getChecking());
+                System.out.println("Your Saving Balance After Transfer  : " + user.getSaving());
+                return true;
+            }
+            else
+            {
+                System.out.println("Invalid.. transaction unsuccessfull");
+                return false;
+            }
+        }
+        else if(choice == 2)
+        {
+            System.out.println("Please Enter The amount you want to transfer from saving to checking: ");
+            double amount = myObj.nextDouble();
+            
+            if(security.verifyTransfer(amount, user, choice))
+            {
+                System.out.println("Your Checking Balance Before Transfer: " + user.getChecking());
+                System.out.println("Your Saving Balance Before Transfer: " + user.getSaving());
+                user.withdrawSaving(amount);
+                user.depositChecking(amount);
+                System.out.println("Your Checking Balance After Transfer: " + user.getChecking());
+                System.out.println("Your Saving Balance After Transfer: " + user.getSaving());
+                return true;
+            }
+            else
+            {
+                System.out.println("Invalid.. transaction unsuccessfull");
+                return false;
+            }
+
+        }
+
+
+
+
+        return true;
     }
     
 }

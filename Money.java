@@ -26,14 +26,21 @@ public class Money {
 
         if(!security.verityBalance(user, amount, choice))
         {
-            System.out.print("You dont have enough money....");
+            System.out.println("You dont have enough money....");
             return false;
         }
         if(!security.verifyMachineBalance(totalAmount, amount))
         {
-            System.out.print("Machine doesn have enough money....");
-            return false;
+            System.out.println("Machine doesn have enough money....");
+            System.out.println("Please Enter New Amount....");
+            amount = myObj.nextDouble();
+            if(!security.verifyMachineBalance(totalAmount, amount))
+            {
+                return false;
+            }
         }
+
+        totalAmount -= amount;
         
         if(choice == 1)
         {
